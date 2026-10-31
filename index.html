@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>VDown</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <canvas id="c"></canvas>
+
+  <!-- Filmiska lager -->
+  <div id="lbTop" class="lb"></div>
+  <div id="lbBot" class="lb"></div>
+  <div id="heat" class="layer"></div>
+  <div id="hurt" class="layer"></div>
+  <div id="lowo2" class="layer"></div>
+  <div id="venom" class="layer"></div>
+  <div id="crack" class="layer lvl0">
+    <svg viewBox="0 0 100 60" preserveAspectRatio="none">
+      <g class="c1" stroke="rgba(230,240,255,.75)" stroke-width=".25" fill="none">
+        <path d="M20 18 L27 22 L24 29 L31 33 M27 22 L35 19 L41 24 M24 29 L17 34 L14 41 M31 33 L30 42"/>
+      </g>
+      <g class="c2" stroke="rgba(230,240,255,.8)" stroke-width=".3" fill="none">
+        <path d="M72 10 L66 17 L70 23 L62 28 L64 37 M66 17 L58 14 L52 19 M70 23 L79 27 L84 35 M62 28 L55 31 L49 29 M64 37 L60 46 L66 54"/>
+      </g>
+    </svg>
+  </div>
+  <div id="bubbles" class="layer"></div>
+  <div id="subs"></div>
+  <div id="caption"></div>
+  <div id="bigtitle"><h1 id="btMain"></h1><div id="btSub"></div></div>
+  <div id="qte"><div id="qteLabel"></div><div class="qbar"><i id="qteFill"></i></div></div>
+  <div id="skiphint">ENTER — hoppa över</div>
+
+  <!-- HUD -->
+  <div id="hud" class="hidden">
+    <div id="obj"><div class="lbl">UPPDRAG</div><div id="objText"></div></div>
+    <div id="timer"></div>
+    <div id="stats">
+      <div class="stat"><span>HÄLSA</span><div class="bar hp"><i id="bHp"></i></div></div>
+      <div class="stat"><span>SYRE</span><div class="bar o2"><i id="bO2"></i></div></div>
+      <div class="stat"><span>MAT</span><div class="bar food"><i id="bFood"></i></div></div>
+      <div class="stat"><span>ORK</span><div class="bar st"><i id="bSt"></i></div></div>
+    </div>
+    <div id="inv">
+      <div id="statusTags"></div>
+      <div id="wpn">PLASMAPISTOL <b id="ammo">–</b></div>
+      <div>ENERGICELLER <b id="cellsTxt">0/3</b></div>
+      <div class="hint">[TAB] RYGGSÄCK</div>
+    </div>
+    <div id="cross"></div>
+    <div id="prompt"></div>
+    <div id="markers"></div>
+  </div>
+  <div id="toasts"></div>
+
+  <!-- Startmeny -->
+  <div id="menu" class="screen">
+    <div class="menu-inner">
+      <div class="kicker">HELION DYNAMICS · FRAKTLOGG SV-7 · ÅR 2187</div>
+      <h1 class="logo">V<span>DOWN</span></h1>
+      <div class="tagline">Nödlandning på Veyra</div>
+      <div class="btns">
+        <div id="loading">LADDAR MODELLER... <span id="loadPct">0%</span></div>
+        <button id="bStart" class="primary hidden">STARTA SPEL</button>
+        <button id="bLore">LORE &amp; BAKGRUND</button>
+        <button id="bCtrl">KONTROLLER</button>
+        <button id="bSound">LJUD: PÅ</button>
+      </div>
+      <div class="foot">Använd hörlurar · ENTER hoppar över mellansekvenser</div>
+    </div>
+  </div>
+
+  <div id="lorePanel" class="panel hidden">
+    <div class="pbox">
+      <h2>VEYRA — BAKGRUND</h2>
+      <div class="lore">
+        <p class="yr">ÅR 2187</p>
+        <p>Mänskligheten har spridit sig över ett dussin stjärnsystem. Men det är inte regeringar som styr de yttre kolonierna, det är <b>Helion Dynamics</b>: megabolaget som äger gruvorna, skeppen, luften du andas och kontraktet du skrev på.</p>
+        <p>Du är <b>Ciro</b>, bärgningsingenjör på fraktskeppet <b>SPARVEN (SV-7)</b>. Skeppet är tjugo år gammalt, värmesystemet är trasigt och minikylen är full av frystorkade köttbullar. Din pilot och bästa vän sedan flygakademin heter <b>Mikko Lind</b>. Han är högljudd, orädd och omöjlig att tysta. På väggen vid kylen hänger fotot från er första dag ombord: två astronauter med tummen upp.</p>
+        <p><b>VEYRA</b> är en dammig, orange värld i Ophion-systemet. För tolv år sedan landade <b>Ödla-expeditionen</b> där för att undersöka märkliga gravitationsavvikelser. Tjugotre forskare åkte dit och ingen kom hem. Helion hemligstämplade rapporten och spärrade av luftrummet runt planeten.</p>
+        <p>Ändå skickade Helion Sparvens rutt rakt förbi den.</p>
+        <p><b>SKÄRVARE</b> är kristallätande rovdjur som jagar i flock. De dras till energi, ljud och ljus. Expeditionens sista loggar nämner dem ofta, och sedan tar loggarna slut.</p>
+        <p><b>FYREN</b> är expeditionens reläsändare. Den är den enda sändaren på planeten som når ut genom Veyras störningsfält, om den fortfarande fungerar.</p>
+        <p>Runt planeten ligger övergivna platser: <b>Ödla-lägret</b>, <b>relästationen</b>, <b>gruvstationen K-4</b>, den kraschade landaren <b>Ikaros</b>, en <b>radiomast</b> och Helions egen <b>Station Theta</b>. Ingen av dem har hörts av på flera år.</p>
+      </div>
+      <button class="close" data-close="lorePanel">STÄNG</button>
+    </div>
+  </div>
+
+  <div id="ctrlPanel" class="panel hidden">
+    <div class="pbox">
+      <h2>KONTROLLER</h2>
+      <table class="ctrl">
+        <tr><td>W A S D</td><td>Gå</td></tr>
+        <tr><td>Shift</td><td>Spring</td></tr>
+        <tr><td>Mellanslag</td><td>Hoppa</td></tr>
+        <tr><td>Mus</td><td>Titta</td></tr>
+        <tr><td>E</td><td>Öppna/stäng dörrar · interagera · knäck nacken på critters · kliv i/ur rovern</td></tr>
+        <tr><td>F</td><td>Lägg i ryggsäcken</td></tr>
+        <tr><td>TAB</td><td>Ryggsäck (klick = använd, högerklick = släpp)</td></tr>
+        <tr><td>Håll vänster musknapp</td><td>Greppa föremål/critters · dra lådlock (upp) · dra spakar (ner) · dra kroppar · gräv · vrid rovernyckeln (höger)</td></tr>
+        <tr><td>Rovern</td><td>W/S gas/back · A/D sväng · mellanslag broms · musen kamera</td></tr>
+        <tr><td>Högerklick (när du håller)</td><td>Kasta föremålet</td></tr>
+        <tr><td>Släpp musknappen / G</td><td>Släpp föremålet</td></tr>
+        <tr><td>1 eller Q</td><td>Dra / hölstra plasmapistolen</td></tr>
+        <tr><td>Vänsterklick (med pistol)</td><td>Skjut</td></tr>
+        <tr><td>L</td><td>Ficklampa</td></tr>
+        <tr><td>Esc</td><td>Paus</td></tr>
+        <tr><td>Enter</td><td>Hoppa över mellansekvens</td></tr>
+      </table>
+      <button class="close" data-close="ctrlPanel">STÄNG</button>
+    </div>
+  </div>
+
+  <div id="pause" class="screen dim hidden">
+    <div class="center-box">
+      <h2>PAUSAD</h2>
+      <button id="bResume" class="primary">FORTSÄTT</button>
+      <button id="bPauseCtrl">KONTROLLER</button>
+      <button id="bQuit">HUVUDMENY</button>
+    </div>
+  </div>
+
+  <div id="death" class="screen dim hidden">
+    <div class="center-box">
+      <h2 class="red">DU DOG</h2>
+      <p id="deathCause"></p>
+      <button id="bRetry" class="primary">FÖRSÖK IGEN</button>
+      <button id="bQuit2">HUVUDMENY</button>
+    </div>
+  </div>
+
+  <div id="invPanel" class="panel hidden">
+    <div class="pbox inv">
+      <h2>🎒 RYGGSÄCK</h2>
+      <div id="invGrid"></div>
+      <div id="invInfo">Håll musen över ett föremål.</div>
+      <div id="invStats"></div>
+      <button id="bInvClose" class="close">STÄNG [TAB]</button>
+    </div>
+  </div>
+
+  <div id="modal" class="panel hidden">
+    <div class="pbox">
+      <h2 class="mtitle"></h2>
+      <div class="mbody"></div>
+      <button id="bModalClose" class="close">STÄNG</button>
+    </div>
+  </div>
+
+  <div id="choice" class="screen dim hidden">
+    <div class="center-box">
+      <h2 class="cq"></h2>
+      <div class="copts"></div>
+    </div>
+  </div>
+
+  <div id="reader" class="hidden">
+    <div class="rbox">
+      <div id="rTitle"></div>
+      <pre id="rText"></pre>
+      <div class="rfoot">[F] Stäng</div>
+    </div>
+  </div>
+
+  <div id="clickPlay" class="hidden">
+    <div>KLICKA FÖR ATT SPELA</div>
+    <small>Musen styr kameran · Esc pausar</small>
+  </div>
+
+  <div id="ending" class="screen hidden">
+    <div class="center-box wide" id="endBox"></div>
+  </div>
+
+  <div id="fade" class="layer"></div>
+  <div id="flash" class="layer"></div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

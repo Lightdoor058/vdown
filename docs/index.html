@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>VDown — ladda ner koden</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root { --acc: #ff8a3d; --bg: #0a0c10; --panel: rgba(8, 12, 20, 0.86); }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      min-height: 100%; background:
+        radial-gradient(ellipse at 20% 0%, rgba(255,138,61,.18), transparent 50%),
+        radial-gradient(ellipse at 80% 100%, rgba(94,230,255,.08), transparent 45%),
+        var(--bg);
+      color: #fff; font-family: Rajdhani, sans-serif;
+    }
+    main { max-width: 640px; margin: 0 auto; padding: 12vh 24px 48px; }
+    .kicker { font-family: Orbitron, sans-serif; font-size: 11px; letter-spacing: .35em; color: var(--acc); }
+    h1 {
+      font-family: Orbitron, sans-serif; font-weight: 900; font-size: clamp(56px, 12vw, 110px);
+      letter-spacing: .04em; line-height: .95; margin: 12px 0 8px;
+      text-shadow: 0 0 50px rgba(255,138,61,.45);
+    }
+    h1 span { color: transparent; -webkit-text-stroke: 2px #fff; }
+    .tag { font-family: Orbitron, sans-serif; letter-spacing: .4em; font-size: 13px; color: #ffd2b0; margin-bottom: 28px; }
+    p { font-size: 20px; line-height: 1.45; color: #d8dce4; margin-bottom: 16px; }
+    .btns { display: flex; flex-wrap: wrap; gap: 12px; margin: 32px 0 28px; }
+    a.btn {
+      font-family: Orbitron, sans-serif; font-weight: 700; font-size: 14px; letter-spacing: .16em;
+      text-decoration: none; color: #120a04; background: var(--acc); border: 1px solid var(--acc);
+      padding: 14px 22px; clip-path: polygon(0 0, 100% 0, 100% 70%, 94% 100%, 0 100%);
+    }
+    a.btn.ghost { color: #fff; background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.28); }
+    a.btn:hover { filter: brightness(1.1); }
+    pre {
+      background: var(--panel); border: 1px solid rgba(255,255,255,.12);
+      padding: 16px 18px; font-size: 14px; line-height: 1.6; overflow: auto; color: #cfe8ff;
+    }
+    .foot { margin-top: 36px; font-size: 14px; color: #8b93a0; }
+    .foot a { color: var(--acc); }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="kicker">HELION DYNAMICS · FRAKTLOGG SV-7</div>
+    <h1>V<span>DOWN</span></h1>
+    <div class="tag">NÖDLANDNING PÅ VEYRA</div>
+    <p>Ett 3D-överlevnadsspel i webbläsaren (Three.js + Vite). Ladda ner källkoden som zip, eller klona repot.</p>
+    <div class="btns">
+      <a class="btn" href="https://github.com/Lightdoor058/vdown/archive/refs/heads/main.zip">Ladda ner zip</a>
+      <a class="btn ghost" href="https://github.com/Lightdoor058/vdown">Öppna på GitHub</a>
+    </div>
+    <pre>git clone https://github.com/Lightdoor058/vdown.git
+cd vdown
+npm install
+npm run dev</pre>
+    <p class="foot">Kör sedan adressen Vite visar, oftast <code>http://localhost:5173</code>. Modellerna ligger i <code>public/models/</code>.</p>
+  </main>
+</body>
+</html>
